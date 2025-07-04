@@ -31,7 +31,7 @@ export default function TodoApp() {
   return (
     <div className="bg-gray-100 px-4 pt-10 min-h-screen">
       <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center text-black">My To-Do App</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center text-blue-600">My To-Do App</h1>
 
         <div className="flex flex-col gap-3 mb-6">
           <input
