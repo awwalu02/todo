@@ -8,9 +8,7 @@ export default function TodoApp() {
 
   useEffect(() => {
     const stored = localStorage.getItem('todos');
-    if (stored) {
-      setTodos(JSON.parse(stored));
-    }
+    if (stored) setTodos(JSON.parse(stored));
   }, []);
 
   useEffect(() => {
@@ -18,39 +16,49 @@ export default function TodoApp() {
   }, [todos]);
 
   const addTodo = () => {
-    if (!input.trim()) return;
-    setTodos([...todos, input.trim()]);
-    setInput('');
+    if (input.trim()) {
+      setTodos([...todos, input.trim()]);
+      setInput('');
+    }
   };
 
   const deleteTodo = (index: number) => {
-    const updated = todos.filter((_, i) => i !== index);
-    setTodos(updated);
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <h1 className="text-3xl font-bold mb-6 text-blue-600">My To-Do App</h1>
-      <div className="w-full max-w-md">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="w-full p-2 border rounded mb-3"
-          placeholder="Enter a task"
-        />
-        <button
-          onClick={addTodo}
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 mb-4"
-        >
-          Add Task
-        </button>
-        <ul className="space-y-2">
+    <div className="bg-gray-100 px-4 pt-10 min-h-screen">
+      <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
+        <h1 className="text-2xl font-bold mb-4 text-center text-black">My To-Do App</h1>
+
+        <div className="flex flex-col gap-3 mb-6">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Enter a task"
+            className="border p-2 rounded w-full text-black placeholder-gray-500"
+          />
+          <button
+            onClick={addTodo}
+            className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+          >
+            Add Task
+          </button>
+        </div>
+
+        <ul className="space-y-3">
           {todos.map((todo, index) => (
-            <li key={index} className="bg-white p-3 rounded flex justify-between items-center shadow">
+            <li
+              key={index}
+              className="bg-gray-50 text-black p-3 rounded flex justify-between items-center shadow-sm"
+            >
               <span>{todo}</span>
               <button
                 onClick={() => deleteTodo(index)}
-                className="text-red-500 hover:text-red-700"
+                className="text-red-600 hover:text-red-800"
               >
                 Delete
               </button>
