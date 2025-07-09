@@ -94,7 +94,7 @@ export default function TodoApp() {
                     className="w-full text-black placeholder-gray-500 focus:outline-none focus:ring-0 border border-gray-300 p-1 rounded"
                   />
                 ) : (
-                  <span className={`flex-1 font-medium ${todo.completed ? 'text-green-600' : 'text-black'}`}>
+                  <span className={`flex-1 font-medium ${todo.completed ? 'text-gray-400 line-through' : 'text-black'}`}>
                     {todo.text}
                   </span>
                 )}
